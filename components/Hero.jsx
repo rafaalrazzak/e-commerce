@@ -15,10 +15,10 @@ export default function Hero() {
     "w-10 h-10 rounded-lg p-1 text-white hover:ring-2 hover:ring-black";
 
   return (
-    <div className="bg-baseYellow -mx-12 px-12 pt-12">
-      <div className="bg-white border-base rounded-lg px-4 py-2 items-center justify-center w-full">
+    <div className="-mx-12 bg-baseYellow px-12 pt-12">
+      <div className="border-base w-full items-center justify-center rounded-lg bg-white px-4 py-2">
         {/* START Action Button */}
-        <div className="flex gap-4 justify-between divide-x-2 divide-black">
+        <div className="flex justify-between gap-4 divide-x-2 divide-black">
           <ActionHeroButton
             title="Scan"
             icon={<QrCodeIcon className={iconClass} />}
@@ -39,8 +39,8 @@ export default function Hero() {
       </div>
 
       {/* START Content Button */}
-      <div className="bg-basePink  -mx-6 mt-6 py-3 rounded-t-lg ring-2 ring-black">
-        <div className="flex-wrap flex justify-between">
+      <div className="-mx-6  mt-6 rounded-t-lg bg-basePink py-3 ring-2 ring-black">
+        <div className="flex flex-wrap justify-between">
           <CategoryHeroButton
             title="Kategori"
             icon={

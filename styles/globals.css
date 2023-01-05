@@ -6,7 +6,7 @@
   .border-base {
     @apply border-2 border-black;
   }
-  .border-y-base{
+  .border-y-base {
     @apply border-y-2 border-black;
   }
   .border-t-base {

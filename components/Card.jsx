@@ -27,6 +27,5 @@ export default function Card({
     typeColor[color]
   } ${sizes[size]} ${className}`;
 
-
   return <div className={classFix}>{children}</div>;
 }

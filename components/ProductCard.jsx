@@ -4,14 +4,10 @@ import Card from "./Card";
 
 export default function ProductCard(props) {
   return (
-    <Card
-      color={props.color || "blue"}
-      className="px-2"
-      shadow={false}
-    >
+    <Card color={props.color || "blue"} className="px-2" shadow={false}>
       <div className="flex flex-col gap-4">
-        <div className="flex flex-col gap-4 flex-1">
-          <div className="relative -mx-[42px] -mt-6 bg-white w-64 h-32 rounded-lg border-base  overflow-hidden">
+        <div className="flex flex-1 flex-col gap-4">
+          <div className="border-base relative -mx-[42px] -mt-6 h-32 w-64 overflow-hidden rounded-lg  bg-white">
             <Image
               src={props.image}
               className="object-cover px-4"

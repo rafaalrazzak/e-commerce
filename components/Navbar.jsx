@@ -11,9 +11,9 @@ function Item({ text, icon }) {
   return (
     <li
       className={clsx(
-        "list-none hover:font-bold hover:underline transition-all duration-300",
+        "list-none transition-all duration-300 hover:font-bold hover:underline",
         {
-          "flex gap-1 items-center": icon,
+          "flex items-center gap-1": icon,
         }
       )}
     >

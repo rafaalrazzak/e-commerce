@@ -1,8 +1,8 @@
 export default function CategoryHeroButton({ title, icon }) {
   return (
-    <button className="flex flex-col items-center w-24">
+    <button className="flex w-24 flex-col items-center">
       {icon}
-      <h1 className="text-sm line-clamp-2 text-center text-white font-medium">
+      <h1 className="text-center text-sm font-medium text-white line-clamp-2">
         {title}
       </h1>
     </button>

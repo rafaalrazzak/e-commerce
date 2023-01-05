@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <Layout>
       <Hero />
-      <div className="flex -mx-6 bg-baseGreen rounded-sm border-y-base">
-        <div className="flex py-6 pl-6 w-full">
+      <div className="border-y-base -mx-6 flex rounded-sm bg-baseGreen">
+        <div className="flex w-full py-6 pl-6">
           <Swiper
             modules={[Controller, Virtual]}
             spaceBetween={20}
@@ -39,7 +39,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 my-4 auto-cols-fr justify-between">
+      <div className="my-4 grid auto-cols-fr grid-cols-2 justify-between gap-4">
         {allProducts.map((product) => (
           <Link
             href={`p/${product.id}`}

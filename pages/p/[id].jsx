@@ -28,29 +28,29 @@ export default function ProductPage({ data }) {
 
   return (
     <div className="relative">
-      <div className="h-64 relative ">
+      <div className="relative h-64 ">
         <Image src={data.image} fill className="object-cover" priority />
       </div>
       {/* Header */}
-      <div className="px-4 my-4 py-2 bg-baseGreen border-y-base">
+      <div className="border-y-base my-4 bg-baseGreen px-4 py-2">
         <div className="flex justify-between">
           <div>
             <h1 className="text-lg font-bold">${data.price}</h1>
-            <div className="flex items-center gap-2 text-xs my-1 ">
-              <p className="bg-basePink rounded py-1 px-2 text-pink-700 ">
+            <div className="my-1 flex items-center gap-2 text-xs ">
+              <p className="rounded bg-basePink py-1 px-2 text-pink-700 ">
                 30%
               </p>
-              <h1 className="line-through  decoration-gray-700 text-gray-700 ">
+              <h1 className="text-gray-700  line-through decoration-gray-700 ">
                 ${data.price * 1.3}
               </h1>
             </div>
           </div>
-          <div className="flex  flex-col justify-end items-end gap-3">
-            <HeartIcon className="w-6 h-6" />
-            <div className="inline-flex  space-x-2 bg-basePink rounded-lg  px-1 items-center ">
+          <div className="flex  flex-col items-end justify-end gap-3">
+            <HeartIcon className="h-6 w-6" />
+            <div className="inline-flex  items-center space-x-2 rounded-lg  bg-basePink px-1 ">
               <img
                 src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/kratos/9527c778.svg"
-                className="w-4 h-4"
+                className="h-4 w-4"
               />
               <p>
                 {data.rating.rate} <span>({data.rating.count * 0.9})</span>
@@ -61,36 +61,36 @@ export default function ProductPage({ data }) {
       </div>
       {/* End Header */}
       <div>
-        <div className="bg-baseYellow py-2 -my-4 px-4 ">
+        <div className="-my-4 bg-baseYellow py-2 px-4 ">
           <h1 className="font-medium leading-tight">{data.title}</h1>
           <p className="text-sm">{`Stock tinggal < 20, beli segera!`}</p>
-          <div className="inline-flex space-x-2 w-full ">
+          <div className="inline-flex w-full space-x-2 ">
             <h1 className="py-2">{`Terjual ${data.rating.count}`}</h1>
           </div>
         </div>
       </div>
       {/* End Of Ttitle */}
 
-      <div className="bg-baseYellow py-2 mt-2 px-4 border-y-base ">
+      <div className="border-y-base mt-2 bg-baseYellow py-2 px-4 ">
         <h1 className="font-semibold">Deskripsi Produk</h1>
         <p>{data.description}</p>
       </div>
 
-      <div className="px-4 bg-basePurple py-2">
+      <div className="bg-basePurple px-4 py-2">
         {/* Main User */}
         <div className="flex">
-          <div className="w-10 h-10 bg-baseGreen rounded-full" />
-          <div className="flex-col -space-y-1 flex ml-2">
-            <div className="inline-flex space-x-2 items-center">
+          <div className="h-10 w-10 rounded-full bg-baseGreen" />
+          <div className="ml-2 flex flex-col -space-y-1">
+            <div className="inline-flex items-center space-x-2">
               <img
                 src="https://images.tokopedia.net/img/official_store/badge_os.png"
-                className="w-4 h-4"
+                className="h-4 w-4"
               />
-              <h1 className="font-bold text-lg">Toko Mpok Diah</h1>
+              <h1 className="text-lg font-bold">Toko Mpok Diah</h1>
             </div>
             <div className="inline-flex items-center space-x-2">
-              <div className="w-1 h-1 bg-baseGreen rounded-full" />
-              <p className="text-baseGreen font-bold">Online</p>
+              <div className="h-1 w-1 rounded-full bg-baseGreen" />
+              <p className="font-bold text-baseGreen">Online</p>
             </div>
             <p className="font-semibold">Jakarta Selatan</p>
           </div>
@@ -99,16 +99,16 @@ export default function ProductPage({ data }) {
 
         {/* User Action */}
 
-        <div className="my-2 flex justify-between w-full items-end">
-          <div className="flex-col flex">
-            <div className="inline-flex space-x-2 items-center">
+        <div className="my-2 flex w-full items-end justify-between">
+          <div className="flex flex-col">
+            <div className="inline-flex items-center space-x-2">
               <StarIcon className="h-4 w-4" />
               <p>
                 4.9{" "}
                 <span className="text-sm text-gray-800">rata rata ulasan</span>
               </p>
             </div>
-            <div className="inline-flex space-x-2 items-center">
+            <div className="inline-flex items-center space-x-2">
               <ClockIcon className="h-4 w-4" />
               <p>
                 ± 1 jam{" "}
@@ -117,7 +117,7 @@ export default function ProductPage({ data }) {
             </div>
           </div>
 
-          <div className="border-2 border-black px-4 py-2 rounded-xl font-bold">
+          <div className="rounded-xl border-2 border-black px-4 py-2 font-bold">
             Following
           </div>
         </div>
@@ -125,13 +125,13 @@ export default function ProductPage({ data }) {
       {/* End User Action */}
 
       {/* All Product */}
-      <div className="px-4 bg-baseGreen py-2 border-y-base">
-        <div className="inline-flex justify-between w-full">
+      <div className="border-y-base bg-baseGreen px-4 py-2">
+        <div className="inline-flex w-full justify-between">
           <h1 className="font-bold">Lainnya dari toko ini</h1>
           <p className="font-semibold">LIhat semua</p>
         </div>
 
-        <div className="flex py-6 pl-6 w-full">
+        <div className="flex w-full py-6 pl-6">
           <Swiper
             modules={[Controller, Virtual]}
             spaceBetween={20}
@@ -157,15 +157,15 @@ export default function ProductPage({ data }) {
       </div>
       {/* End Of All Product */}
 
-      <aside className=" fixed inset-x-0 -bottom-4 z-[99] mx-auto flex max-w-xl flex-col py-6 px-4 border-y-base bg-baseYellow">
-        <div className="inline-flex space-x-2 justify-around">
-          <ChatBubbleLeftEllipsisIcon className="w-10 h-10 border-base rounded-lg p-2" />
+      <aside className=" border-y-base fixed inset-x-0 -bottom-4 z-[99] mx-auto flex max-w-xl flex-col bg-baseYellow py-6 px-4">
+        <div className="inline-flex justify-around space-x-2">
+          <ChatBubbleLeftEllipsisIcon className="border-base h-10 w-10 rounded-lg p-2" />
           <div className="inline-flex space-x-2">
-            <button className="border-base  font-bold rounded-lg py-2 px-4">
+            <button className="border-base  rounded-lg py-2 px-4 font-bold">
               Beli Sekarang
             </button>
-            <button className="border-base bg-basePink font-bold rounded-lg py-2 px-4 inline-flex items-center">
-              <PlusIcon className="w-4 h-4" />
+            <button className="border-base inline-flex items-center rounded-lg bg-basePink py-2 px-4 font-bold">
+              <PlusIcon className="h-4 w-4" />
               Keranjang
             </button>
           </div>

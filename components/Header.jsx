@@ -5,7 +5,7 @@ const IconClass = "w-4 h-4";
 
 export default function Header() {
   return (
-    <header className="bg-white px-6 py-3 border-base">
+    <header className="bg-white px-6 py-3 border-y-base">
       <Navbar>
         <Navbar.Items className="flex gap-3 justify-between font-semibold">
           <Navbar.Item text="Home" />

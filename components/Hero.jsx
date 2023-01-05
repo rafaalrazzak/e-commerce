@@ -3,14 +3,16 @@ import {
   BanknotesIcon,
   MapPinIcon,
   DevicePhoneMobileIcon,
+  TicketIcon,
 } from "@heroicons/react/24/outline";
+import { IoPhonePortraitOutline, IoTicketOutline } from "react-icons/io5";
 import ActionHeroButton from "./ActionHeroButton";
 import CategoryHeroButton from "./CategoryHeroButton";
 
 export default function Hero() {
   const iconClass = "w-4 h-4 text-basePink";
   const iconCategoryClass =
-    "w-12 h-12 bg-baseGreen rounded-lg p-1 text-white hover:border-base";
+    "w-10 h-10 rounded-lg p-1 text-white hover:ring-2 hover:ring-black";
 
   return (
     <div className="bg-baseYellow -mx-12 px-12 pt-12">
@@ -37,23 +39,43 @@ export default function Hero() {
       </div>
 
       {/* START Content Button */}
-      <div className="bg-basePink  -mx-6 mt-6 px-12 py-3 rounded-t-lg border-t-base ">
-        <div className="flex-wrap flex items-center justify-between">
+      <div className="bg-basePink  -mx-6 mt-6 py-3 rounded-t-lg ring-2 ring-black">
+        <div className="flex-wrap flex justify-between">
           <CategoryHeroButton
-            title="Pulsa & Tagihan"
-            icon={<DevicePhoneMobileIcon className={iconCategoryClass} />}
+            title="Kategori"
+            icon={
+              <img
+                src="https://images.tokopedia.net/img/cache/100-square/iEWsxH/2021/10/5/461aa510-5537-41b7-92d4-684d39c9930e.png"
+                className={iconCategoryClass}
+              />
+            }
           />
           <CategoryHeroButton
-            title="Pulsa & Tagihan"
-            icon={<DevicePhoneMobileIcon className={iconCategoryClass} />}
+            title="Handphone & Tablet"
+            icon={
+              <img
+                src="https://images.tokopedia.net/img/cache/100-square/iEWsxH/2021/10/5/a809e96e-3c18-4e63-ac83-8deb9b4c1b1c.png"
+                className={iconCategoryClass}
+              />
+            }
           />
           <CategoryHeroButton
-            title="Pulsa & Tagihan"
-            icon={<DevicePhoneMobileIcon className={iconCategoryClass} />}
+            title="Top-Up & Tagihan"
+            icon={
+              <img
+                src="https://images.tokopedia.net/img/cache/100-square/iEWsxH/2021/10/5/75f2fb8a-a4ca-4cd6-a166-7279daef1d5b.png"
+                className={iconCategoryClass}
+              />
+            }
           />
           <CategoryHeroButton
-            title="Pulsa & Tagihan"
-            icon={<DevicePhoneMobileIcon className={iconCategoryClass} />}
+            title="Komputer & Laptop"
+            icon={
+              <img
+                src="https://images.tokopedia.net/img/cache/100-square/iEWsxH/2021/10/5/be48df38-d1e5-48ba-92c4-5644f4c2939b.png"
+                className={iconCategoryClass}
+              />
+            }
           />
         </div>
       </div>

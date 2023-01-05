@@ -1,11 +1,11 @@
-import { useContext, createContext, useState, useEffect } from "react";
+import { useContext, createContext, useState, useEffect, useMemo } from "react";
 
 const Context = createContext();
 
 const Provider = ({ children }) => {
   const [allProducts, setAllProducts] = useState([]);
 
-  useEffect(() => {
+  useMemo(() => {
     fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((json) => setAllProducts(json));

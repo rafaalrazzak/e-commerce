@@ -1,6 +1,20 @@
-export default function Card({ children, color, className }) {
-  const baseClass =
-    " border-base shadow-base overflow-hidden rounded-xl py-5 px-10";
+import Link from "next/link";
+
+export default function Card({
+  children,
+  color,
+  className,
+  size = "base",
+  shadow = true,
+}) {
+  const baseClass = " border-base  overflow-hidden rounded-xl py-5 px-10";
+
+  const sizes = {
+    sm: "py-2 px-4",
+    md: "py-3 px-6",
+    base: "py-5 px-10",
+  };
+
   const typeColor = {
     blue: "bg-baseBlue",
     green: "bg-baseGreen",
@@ -9,7 +23,10 @@ export default function Card({ children, color, className }) {
     purple: "bg-basePurple",
   };
 
-  const classFix = `${baseClass} ${typeColor[color]} ${className}`;
+  const classFix = `${baseClass} ${shadow && "shadow-base"} ${
+    typeColor[color]
+  } ${sizes[size]} ${className}`;
+
 
   return <div className={classFix}>{children}</div>;
 }

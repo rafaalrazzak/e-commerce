@@ -7,10 +7,10 @@ export default function Card({
   size = "base",
   shadow = true,
 }) {
-  const baseClass = " border-base  overflow-hidden rounded-xl py-5 px-10";
+  const baseClass = "border-base  overflow-hidden rounded-xl";
 
   const sizes = {
-    sm: "py-2 px-4",
+    sm: "py-2 px-2",
     md: "py-3 px-6",
     base: "py-5 px-10",
   };

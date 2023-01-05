@@ -13,24 +13,25 @@ export default function Home() {
   return (
     <Layout>
       <Hero />
-      <div className="border-y-base -mx-6 flex rounded-sm bg-baseGreen">
+      <div className="border-y-base -mx-4 flex rounded-sm bg-baseGreen ">
         <div className="flex w-full py-6 pl-6">
           <Swiper
             modules={[Controller, Virtual]}
-            spaceBetween={20}
+            spaceBetween={10}
             slidesPerView={2.5}
           >
             {allProducts.splice(0, 5).map((product, index) => (
-              <SwiperSlide className="overflow-visible">
+              <SwiperSlide className="overflow-visible" key={product.id}>
                 <Link
                   href={`p/${product.id}`}
                   key={product.id}
                   className="cursor-pointer"
                 >
                   <ProductCard
+                    size="sm"
                     href={`/p/${product.id}`}
-                    {...product}
                     virtualIndex={index}
+                    {...product}
                   />
                 </Link>
               </SwiperSlide>
@@ -47,6 +48,7 @@ export default function Home() {
             className="cursor-pointer"
           >
             <ProductCard
+              size="sm"
               href={`/p/${product.id}`}
               color="purple"
               {...product}

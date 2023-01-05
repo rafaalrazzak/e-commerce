@@ -15,7 +15,7 @@ export default function Hero() {
     "w-10 h-10 rounded-lg p-1 text-white hover:ring-2 hover:ring-black";
 
   return (
-    <div className="-mx-12 bg-baseYellow px-12 pt-12">
+    <div className="-mx-4 bg-baseYellow px-4 pt-12">
       <div className="border-base w-full items-center justify-center rounded-lg bg-white px-4 py-2">
         {/* START Action Button */}
         <div className="flex justify-between gap-4 divide-x-2 divide-black">
@@ -39,7 +39,7 @@ export default function Hero() {
       </div>
 
       {/* START Content Button */}
-      <div className="-mx-6  mt-6 rounded-t-lg bg-basePink py-3 ring-2 ring-black">
+      <div className="-mx-4 mt-6 rounded-t-lg bg-basePink py-3 ring-2 ring-black">
         <div className="flex flex-wrap justify-between">
           <CategoryHeroButton
             title="Kategori"

@@ -13,13 +13,21 @@ export default function ProductCard(props) {
               className="object-cover px-4"
               alt={props.title}
               fill
+              sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
             />
           </div>
           <div className="flex flex-col gap-2 text-xs">
             <h1 className="text-xs font-medium line-clamp-2">{props.title}</h1>
             <h2 className="font-bold">${props.price}</h2>
-            <div className="inline-flex gap-1">
-              <img src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/kratos/9527c778.svg" />
+            <div className="inline-flex gap-1 ">
+              <Image
+                width={15}
+                height={15}
+                src="https://assets.tokopedia.net/assets-tokopedia-lite/v2/zeus/kratos/9527c778.svg"
+                alt="rating"
+              />
               <p>
                 {props.rating.rate} | Terjual {props.rating.count}
               </p>

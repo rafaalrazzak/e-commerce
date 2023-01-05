@@ -4,10 +4,12 @@ export default function Button({
   text,
   className,
   hover,
+  rounded = "rounded-full",
+  shadow=true,
   size = "base",
 }) {
   const baseClass =
-    "transition-all duration-300 ease-in-out text-center justify-center items-center flex rounded-full border-base shadow-base";
+    "transition-all duration-300 ease-in-out text-center justify-center items-center flex border-base";
 
   const typeColor = {
     blue: "bg-baseBlue",
@@ -30,7 +32,7 @@ export default function Button({
     blue: "hover:bg-basePink",
   };
 
-  const classFix = `${baseClass} ${sizes[size]} ${typeColor[color]} ${hoverColor[hover]} ${className}`;
+  const classFix = `${baseClass} ${sizes[size]} ${typeColor[color]} ${hoverColor[hover]} ${className} ${rounded}  ${shadow && "shadow-base"}`;
 
   return (
     <div className={classFix}>

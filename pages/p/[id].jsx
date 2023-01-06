@@ -4,8 +4,6 @@ import {
   HeartIcon,
   StarIcon,
   ClockIcon,
-  ChatBubbleLeftEllipsisIcon,
-  PlusIcon,
 } from "@heroicons/react/24/outline";
 
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -15,6 +13,7 @@ import { useStore } from "../../context/Store";
 import ProductCard from "../../components/ProductCard";
 import Rating from "../../components/Rating";
 import Button from "../../components/Button";
+import ProductLayout from "../../components/layout/ProductLayout";
 
 export async function getServerSideProps({ params: { id } }) {
   const res = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -29,16 +28,17 @@ export default function ProductPage({ data }) {
   const { allProducts } = useStore();
 
   return (
-    <div className="relative">
-      <div className="relative h-64 ">
-        <Image src={data.image} fill className="object-cover" priority />
-      </div>
-      {/* Header */}
-      <div className="border-y-base my-4 bg-baseGreen px-4 py-2">
-        <div className="flex justify-between">
-          <div>
-            <h1 className="text-lg font-bold">${data.price}</h1>
-            <div className="my-1 flex items-center gap-2 text-xs ">
+      <ProductLayout>
+
+        <div className="relative h-64 ">
+          <Image src={data.image} fill className="object-cover" priority/>
+        </div>
+        {/* Header */}
+        <div className="border-y-base my-4 bg-baseGreen px-4 py-2">
+          <div className="flex justify-between">
+            <div>
+              <h1 className="text-lg font-bold">${data.price}</h1>
+              <div className="my-1 flex items-center gap-2 text-xs ">
               <p className="rounded bg-basePink py-1 px-2 text-pink-700 ">
                 30%
               </p>
@@ -146,25 +146,16 @@ export default function ProductPage({ data }) {
                   <ProductCard
                     size="sm"
                     {...product}
-                    virtualIndex={index}
+                      virtualIndex={index}
                   />
                 </Link>
-              </SwiperSlide>
-            ))}
+              </SwiperSlide>))}
           </Swiper>
         </div>
       </div>
-      {/* End Of All Product */}
+        {/* End Of All Product */}
 
-      <aside className="border-y-base sticky inset-x-0 -bottom-4 z-[99] mx-auto flex max-w-xl flex-col bg-baseYellow py-6 px-4">
-        <div className="inline-flex justify-around space-x-2">
-          <Button shadow={false} size="sm"  rounded="rounded-lg" icon={<ChatBubbleLeftEllipsisIcon className=" h-8 w-8 " />}/>
-          <div className="inline-flex space-x-2">
-            <Button shadow={false} size="sm" rounded="rounded-lg" text="Beli Sekarang"/>
-            <Button shadow={false} size="sm" color="pink" rounded="rounded-lg" icon={<PlusIcon className="h-4 w-4" />} text="Keranjang"/>
-          </div>
-        </div>
-      </aside>
-    </div>
+
+      </ProductLayout>
   );
 }

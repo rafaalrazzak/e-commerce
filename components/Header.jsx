@@ -5,7 +5,7 @@ import {useStore} from "../context/Store";
 import Button from "./Button";
 
 export default function Header() {
-  const {setSearchModal, countCart} = useStore();
+  const {setSearchModal, cardProduct} = useStore();
   return (
     <header className="border-y-base bg-white px-6 py-3">
       <Navbar>
@@ -18,8 +18,8 @@ export default function Header() {
           <Navbar.Item
             icon={
               <div className="relative">
-                {countCart && <span
-                    className="bg-baseYellow px-1 text-xs rounded-full absolute left-3 -top-2 font-bold">{countCart}</span>}
+                {cardProduct?.length && <span
+                    className="bg-baseYellow px-1 text-xs rounded-full absolute left-3 -top-2 font-bold">{cardProduct.length}</span>}
                 <ShoppingCartIcon className="w-6 h-6"/>
               </div>
             }

@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Controller, Virtual } from "swiper";
 import "swiper/css";
 import Link from "next/link";
-
 export default function Home() {
   const { allProducts } = useStore();
 

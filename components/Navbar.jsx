@@ -1,6 +1,6 @@
 import clsx from "clsx";
 function NavbarRoot({ children, className }) {
-  return <navbar className={className}>{children}</navbar>;
+  return <nav className={className}>{children}</nav>;
 }
 
 function Items({ children, className }) {

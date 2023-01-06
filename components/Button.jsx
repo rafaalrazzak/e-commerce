@@ -7,6 +7,7 @@
   rounded = "rounded-full",
   shadow=true,
   size = "base",
+   ...props
 }) {
   const baseClass =
     "transition-all duration-300 ease-in-out text-center justify-center items-center flex border-base";
@@ -35,10 +36,10 @@
   const classFix = `${baseClass} ${sizes[size]} ${typeColor[color]} ${hoverColor[hover]} ${className} ${rounded}  ${shadow && "shadow-base"}`;
 
   return (
-    <div className={classFix}>
-      {icon}
-      <h1 className="text-lg font-bold">{text}</h1>
-    </div>
+      <button className={classFix} {...props}>
+        {icon}
+        <h1 className="text-lg font-bold">{text}</h1>
+      </button>
   );
 }
 

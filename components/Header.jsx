@@ -1,7 +1,8 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
+import {useStore} from "../context/Store";
 import Navbar from "./Navbar";
 import Search from "./search/Search";
-import {useStore} from "../context/Store";
 import Button from "./Button";
 
 export default function Header() {
@@ -17,11 +18,11 @@ export default function Header() {
           </Navbar.Item>
           <Navbar.Item
             icon={
-              <div className="relative">
+              <Link href="/cart" className="relative cursor-pointer">
                 {cardProduct?.length && <span
                     className="bg-baseYellow px-1 text-xs rounded-full absolute left-3 -top-2 font-bold">{cardProduct.length}</span>}
                 <ShoppingCartIcon className="w-6 h-6"/>
-              </div>
+              </Link>
             }
           />
         </Navbar.Items>

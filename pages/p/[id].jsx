@@ -25,12 +25,24 @@ export async function getServerSideProps({ params: { id } }) {
   };
 }
 export default function ProductPage({ data }) {
-  const { allProducts } = useStore();
+  const {allProducts, setCartProduct, cartProduct} = useStore();
+
+  function handleBuy(){
+    alert("Beli Sekarang");
+  }
+
+  function handleAddToCart(){
+    if(cartProduct.find((item) => item.id === data.id)){
+      alert("Produk sudah ada di keranjang");
+    }else{
+      setCartProduct([...cartProduct, data]);
+      alert("Produk berhasil ditambahkan ke keranjang");
+    }
+  }
 
   return (
-      <ProductLayout>
-
-        <div className="relative h-64 ">
+      <ProductLayout handleBuy={handleBuy} handleAddToCart={handleAddToCart}>
+        <div className="relative h-64 mt-18 ">
           <Image src={data.image} fill className="object-cover" priority/>
         </div>
         {/* Header */}
@@ -39,7 +51,7 @@ export default function ProductPage({ data }) {
             <div>
               <h1 className="text-lg font-bold">${data.price}</h1>
               <div className="my-1 flex items-center gap-2 text-xs ">
-              <p className="rounded bg-basePink py-1 px-2 text-pink-700 ">
+                <p className="rounded bg-basePink py-1 px-2 text-pink-700 ">
                 30%
               </p>
               <h1 className="text-gray-700  line-through decoration-gray-700 ">

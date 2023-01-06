@@ -7,7 +7,7 @@ export default function SearchModal(){
 	return (
 			<Dialog open={searchModal} onClose={() => setSearchModal(false)}>
 				<Dialog.Panel className="absolute w-screen h-screen bg-basePink inset-0 z-50">
-					<ActionButton/>
+					<ActionButton back search share cart input/>
 				</Dialog.Panel>
 			</Dialog>)
 }

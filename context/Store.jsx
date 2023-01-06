@@ -9,7 +9,7 @@ const Provider = ({children}) => {
 	const [cartProduct, setCartProduct] = useLocalStorage("carts", []);
 
 	useEffect(() => {
-		fetch("http://localhost:3000/api/products")
+		fetch("https://toko.rafaar.me/api/products")
 				.then(response => response.json()).then(data => setAllProducts(data));
 	}, []);
 

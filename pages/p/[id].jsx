@@ -16,7 +16,7 @@ import Button from "../../components/Button";
 import ProductLayout from "../../components/layout/ProductLayout";
 
 export async function getServerSideProps({ params: { id } }) {
-  const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+  const res = await fetch(`http://localhost:3000/api/products/${id}`);
   const data = await res.json();
   return {
     props: {
@@ -49,13 +49,13 @@ export default function ProductPage({ data }) {
         <div className="border-y-base my-4 bg-baseGreen px-4 py-2">
           <div className="flex justify-between">
             <div>
-              <h1 className="text-lg font-bold">${data.price}</h1>
+              <h1 className="text-lg font-bold">{data.price}</h1>
               <div className="my-1 flex items-center gap-2 text-xs ">
                 <p className="rounded bg-basePink py-1 px-2 text-pink-700 ">
                 30%
               </p>
               <h1 className="text-gray-700  line-through decoration-gray-700 ">
-                ${data.price * 1.3}
+                Rp {data.priceInt * 1.3}
               </h1>
             </div>
           </div>

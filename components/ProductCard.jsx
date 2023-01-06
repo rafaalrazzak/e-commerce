@@ -20,7 +20,7 @@ export default function ProductCard(props) {
           </div>
           <div className="flex flex-col gap-2 text-xs">
             <h1 className="text-xs font-medium line-clamp-2">{props.title}</h1>
-            <h2 className="font-bold">${props.price}</h2>
+            <h2 className="font-bold">{props.price}</h2>
             <div className="inline-flex gap-1 ">
               <Image
                 width={15}

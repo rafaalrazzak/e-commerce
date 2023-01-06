@@ -1,16 +1,16 @@
-import {useContext, createContext, useState, useMemo} from "react";
+import {useContext, createContext, useState, useEffect} from "react";
+import useLocalStorage from "../hooks/useLocalStorage"
 
 const Context = createContext();
 
 const Provider = ({children}) => {
 	const [allProducts, setAllProducts] = useState([]);
 	const [searchModal, setSearchModal] = useState(false);
-	const [cartProduct, setCartProduct] = useState([]);
+	const [cartProduct, setCartProduct] = useLocalStorage("carts", []);
 
-	useMemo(() => {
-		fetch("https://fakestoreapi.com/products")
-				.then((res) => res.json())
-				.then((json) => setAllProducts(json));
+	useEffect(() => {
+		fetch("http://localhost:3000/api/products")
+				.then(response => response.json()).then(data => setAllProducts(data));
 	}, []);
 
 	const exposed = {

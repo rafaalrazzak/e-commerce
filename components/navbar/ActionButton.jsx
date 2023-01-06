@@ -12,7 +12,7 @@ export default function ActionButton({search = false, share = false, cart = fals
 		if(searchModal){
 			setSearchModal(false);
 		} else{
-			router.back();
+			router.push("/");
 		}
 	}
 
@@ -28,7 +28,6 @@ export default function ActionButton({search = false, share = false, cart = fals
 							className="bg-baseYellow px-1 text-xs rounded-full absolute left-3 -top-2 font-bold">{cartProduct.length}</span>}
 					<ShoppingCartIcon className={IconClass}/>
 				</Link>}
-
 			</div>
 
 	)

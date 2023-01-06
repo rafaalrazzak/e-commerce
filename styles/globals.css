@@ -11,5 +11,7 @@
   }
   .border-t-base {
     @apply border-t-2 border-black;
+  }.border-b-base {
+    @apply border-b-2 border-black;
   }
 }

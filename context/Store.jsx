@@ -1,9 +1,11 @@
-import { useContext, createContext, useState, useEffect, useMemo } from "react";
+import { useContext, createContext, useState, useMemo } from "react";
 
 const Context = createContext();
 
 const Provider = ({ children }) => {
   const [allProducts, setAllProducts] = useState([]);
+  const [searchModal, setSearchModal] = useState(false);
+  const [countCart, setCountCart] = useState(3);
 
   useMemo(() => {
     fetch("https://fakestoreapi.com/products")
@@ -13,6 +15,10 @@ const Provider = ({ children }) => {
 
   const exposed = {
     allProducts,
+    searchModal,
+    setSearchModal,
+    countCart,
+    setCountCart,
   };
 
   return <Context.Provider value={exposed}>{children}</Context.Provider>;

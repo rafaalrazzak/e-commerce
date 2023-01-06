@@ -1,4 +1,4 @@
-export default function Button({
+ function Button({
   color,
   icon,
   text,
@@ -41,3 +41,32 @@ export default function Button({
     </div>
   );
 }
+
+function Raw({children, border, color, className, ...props}) {
+
+  const typeColor = {
+    blue: "bg-baseBlue",
+    green: "bg-baseGreen",
+    yellow: "bg-baseYellow",
+    pink: "bg-basePink",
+    purple: "bg-basePurple",
+  };
+
+  const typeBorder = {
+    blue: "border border-baseBlue",
+    green: "border border-baseGreen",
+    yellow: "border border-baseYellow",
+    pink: "border border-basePink",
+    purple: "border border-basePurple",
+    base: "border-base"
+  }
+
+  const classFix = `${typeColor[color]} ${typeBorder[border]} ${className}`;
+  return (
+      <button className={classFix} {...props}>
+        {children}
+      </button>
+  )
+}
+
+export default Object.assign(Button, { Raw });

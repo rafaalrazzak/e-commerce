@@ -85,6 +85,7 @@ export default function ProductPage({ data }) {
               <img
                 src="https://images.tokopedia.net/img/official_store/badge_os.png"
                 className="h-4 w-4"
+                  alt="Official Store"
               />
               <h1 className="text-lg font-bold">Toko Mpok Diah</h1>
             </div>
@@ -138,13 +139,12 @@ export default function ProductPage({ data }) {
             {allProducts.splice(0, 5).map((product, index) => (
               <SwiperSlide className="overflow-visible" key={product.id}>
                 <Link
-                  href={`p/${product.id}`}
-                  key={product.id}
+                    href={`/p/${product.id}`}
+                    key={product.id}
                   className="cursor-pointer"
                 >
                   <ProductCard
                     size="sm"
-                    href={`/p/${product.id}`}
                     {...product}
                     virtualIndex={index}
                   />

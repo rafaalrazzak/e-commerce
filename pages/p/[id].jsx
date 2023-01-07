@@ -16,7 +16,7 @@ import Button from "../../components/Button";
 import ProductLayout from "../../components/layout/ProductLayout";
 
 export async function getServerSideProps({ params: { id } }) {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`);
+  const res = await fetch(`https://toko.rafaar.me/api/products/${id}`);
   const data = await res.json();
   return {
     props: {
@@ -35,7 +35,7 @@ export default function ProductPage({ data }) {
     if(cartProduct.find((item) => item.id === data.id)){
       alert("Produk sudah ada di keranjang");
     }else{
-      setCartProduct([...cartProduct, data]);
+      setCartProduct([...cartProduct, {...data, quantity: 1}]);
       alert("Produk berhasil ditambahkan ke keranjang");
     }
   }

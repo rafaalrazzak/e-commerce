@@ -1,30 +1,73 @@
-import {useState} from "react";
-import {MapPinIcon, MinusIcon, PlusIcon} from "@heroicons/react/24/outline";
+import {useEffect, useState} from "react";
+import {MapPinIcon, TrashIcon} from "@heroicons/react/24/outline";
 import ActionButton from "../components/navbar/ActionButton";
 import SelectButton from "../components/SelectButton";
 import {useStore} from "../context/Store";
-import useLocalStorage from "../hooks/useLocalStorage";
 import Image from "next/image";
 import toCurrency from "../libs/toCurrency";
+import clsx from "clsx";
+import Button from "../components/Button";
 
 export default function Cart(){
-	const {cartProduct, allProducts} = useStore();
-	const [storage, setStorage] = useLocalStorage("cart", []);
+	const {cartProduct, setCartProduct,} = useStore();
+	const [total, setTotal] = useState();
 
 
 	const [selected, setSelected] = useState({
-		all: false,
+		all: false, item: []
 	});
 
-	function handleChange(e){
-		setSelected({
-			...selected, [e.target.name]: e.target.checked
-		});
+	function handleChange(event){
+		const {value, id, name} = event.target;
+
+
+		const itemId = parseInt(id, 10);
+
+		//
+
+		setSelected(prevState => ({
+			...prevState, item: [...prevState.item, {itemId: event.target.checked}
+	]
+	}))
+
+
+
+		console.log(selected);
+
 	}
+
 
 	async function handleSubmit(e){
 		e.preventDefault();
 	}
+
+
+	const handleCounter = (event) => {
+		const {id, name, value} = event.target;
+		const item = cartProduct.find((item) => item.id === parseInt(id, 10));
+
+		if(item.quantity !== 0){
+			if(value === 'plus' || (
+					value === 'minus' && item.quantity > 1)){
+				const updatedQuantity = value === 'plus' ? item.quantity + 1 : item.quantity - 1;
+				const updatedItem = {...item, quantity: updatedQuantity};
+				setCartProduct((prevCart) => prevCart.map((item) => item.id === parseInt(id, 10) ? updatedItem : item));
+			}
+		}
+	};
+
+
+	const handleDelete = (e) => {
+		const {id} = e.target;
+		setCartProduct(cartProduct.filter((item) => item.id === parseInt(id)));
+	}
+
+	useEffect(() => {
+		setTotal({
+			price: cartProduct.reduce((acc, item) => acc + (
+					item.priceInt * item.quantity), 0), quantity: cartProduct.reduce((acc, item) => acc + item.quantity, 0),
+		});
+	}, [cartProduct]);
 
 
 	return (
@@ -45,36 +88,41 @@ export default function Cart(){
 					</div>
 
 
-					<div className="px-4 py-2 -my-4 bg-baseGreen border-y-base">
+					<div className="px-4 py-2 -my-4 bg-baseGreen min-h-screen border-y-base">
 
-						{/*Seller*/}
-						<div className="flex justify-start items-start">
-							<SelectButton checked={selected.all} name="all" onChange={handleChange}/>
-							<div className="ml-2 flex flex-col -my-1">
-								<div className="inline-flex items-center space-x-2">
-									<img
-											src="https://images.tokopedia.net/img/official_store/badge_os.png"
-											className="h-4 w-4"
-											alt="Official Store"
-									/>
-									<h1 className="font-bold">Toko Mpok Diah</h1>
+						{cartProduct.length >= 1 && (
+
+								<div className="flex justify-start items-start">
+									<SelectButton checked={selected.all} name="all" onChange={handleChange}/>
+									<div className="ml-2 flex flex-col -my-1">
+										<div className="inline-flex items-center space-x-2">
+											<img
+													src="https://images.tokopedia.net/img/official_store/badge_os.png"
+													className="h-4 w-4"
+													alt="Official Store"
+											/>
+											<h1 className="font-bold">Toko Mpok Diah</h1>
+										</div>
+										<p>Jakarta Selatan</p>
+									</div>
 								</div>
-								<p>Jakarta Selatan</p>
-							</div>
-						</div>
-						{/*End Seller*/}
 
+						)}
 
 						<div className="mt-6">
-							{cartProduct?.map((product, index) => {
-								const {id, title, price, priceInt, image} = product;
+
+
+							{cartProduct.map((product, index) => {
+								const {id, title, price, priceInt, image, quantity} = product;
+
 								return (
 										<div key={index} className="flex flex-col gap-3">
 											<div className="flex justify-start items-start">
-												<SelectButton checked={selected.all} name="all" onChange={handleChange}/>
+												<SelectButton checked={selected.item[id]} id={id}
+														onChange={handleChange}/>
 												<div className="ml-2 flex flex-col -my-1">
 													<div className="inline-flex items-center space-x-2">
-														<div className="w-20 h-16 relative bg-white rounded-xl overflow-hidden">
+														<div className="w-20 h-24 relative bg-white rounded-xl overflow-hidden">
 															<Image src={image} alt={title} className=" object-cover" fill/>
 														</div>
 
@@ -99,53 +147,51 @@ export default function Cart(){
 											</div>
 
 
-											<div className="flex justify-between my-3">
+											<div className="flex justify-between my-3 items-center">
 												<h1>Pindahkan ke Wishlist</h1>
-												<div className="flex flex-col gap-2">
-													<div className="flex items-center gap-2 bg-baseYellow px-2  rounded-xl border-base">
-														<button
-																className=" text-pink-700/50 rounded-full w-8 h-8 flex items-center justify-center">
-															<MinusIcon className="w-4 h-4"/>
+												<div className="inline-flex items-center gap-4">
+													<button onClick={handleDelete} id={id}>
+														<TrashIcon className="w-5 h-5"/>
+													</button>
+													<div className="flex gap-4 font-bold bg-baseYellow rounded-lg p-2 border-base items-center">
+														<button onClick={handleCounter}
+																id={id}
+																className={clsx("w-5 h-5  p-2 flex items-center justify-center", {
+																	"text-slate-500/70": quantity === 1
+																})}
+																value="minus"
+																aria-readonly>
+															-
 														</button>
-														<h1 className="text-lg font-bold">
-															{cartProduct.filter((item) => item.id === id).length}
-														</h1>
-														<button
-																className=" text-pink-700 rounded-full w-8 h-8 flex items-center justify-center">
-															<PlusIcon className="w-4 h-4"/>
+														<p>{quantity}</p>
+														<button onClick={handleCounter}
+																id={id}
+																className="w-5 h-5 text-basePink  p-2  flex items-center justify-center"
+																value="plus"
+																aria-readonly>
+															+
 														</button>
 													</div>
 												</div>
-
 											</div>
-
-											{/*<div className="flex justify-between items-center">*/}
-											{/*	<div className="flex items-center space-x-2">*/}
-											{/*		<button*/}
-											{/*				className="bg-basePurple text-white rounded-full w-8 h-8 flex justify-center items-center">-*/}
-											{/*		</button>*/}
-											{/*		<p className="font-semibold">{quantity}</p>*/}
-											{/*		<button*/}
-											{/*				className="bg-basePurple text-white rounded-full w-8 h-8 flex justify-center items-center">+*/}
-											{/*		</button>*/}
-											{/*	</div>*/}
-											{/*	<div className="flex items-center space-x-2">*/}
-											{/*		<p className="font-semibold">{discountPrice}</p>*/}
-											{/*		<button*/}
-											{/*				className="bg-basePurple text-white rounded-full w-8 h-8 flex justify-center items-center">x*/}
-											{/*		</button>*/}
-											{/*	</div>*/}
-											{/*</div>*/}
-
 										</div>)
 							})}
 						</div>
 
+						<aside className=" bg-baseYellow -mx-4 p-4 border-t-base fixed bottom-0 w-full">
+							<div className="flex gap-3 justify-between">
+								<div className="flex  flex-col">
+
+									<h1 className="font-bold">Total Harga</h1>
+									<h1 className="font-bold">{total?.price ? toCurrency(total.price) : "-"}</h1>
+								</div>
+								<Button color="pink" shadow={false} text={`Beli (${total?.quantity})`} rounded="rounded-lg"
+										hover="purple">
+
+								</Button>
+							</div>
+						</aside>
 					</div>
-
-					<button onClick={handleSubmit}>Submit</button>
-
-
 				</div>
 			</div>)
 }

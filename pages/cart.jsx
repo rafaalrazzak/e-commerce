@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
+import clsx from "clsx";
+import Image from "next/image";
 import {MapPinIcon, TrashIcon} from "@heroicons/react/24/outline";
+import {useStore} from "../context/Store";
 import ActionButton from "../components/navbar/ActionButton";
 import SelectButton from "../components/SelectButton";
-import {useStore} from "../context/Store";
-import Image from "next/image";
-import toCurrency from "../libs/toCurrency";
-import clsx from "clsx";
 import Button from "../components/Button";
+import toCurrency from "../libs/toCurrency";
 
 export default function Cart(){
 	const {cartProduct, setCartProduct,} = useStore();
@@ -18,22 +18,19 @@ export default function Cart(){
 	});
 
 	function handleChange(event){
-		const {value, id, name} = event.target;
+		const {name, checked, id} = event.target;
 
-
-		const itemId = parseInt(id, 10);
-
-		//
-
-		setSelected(prevState => ({
-			...prevState, item: [...prevState.item, {itemId: event.target.checked}
-	]
-	}))
-
-
-
-		console.log(selected);
-
+		if(name === "all"){
+			setSelected({
+				all: checked, item: checked ? cartProduct.map(item => item) : [],
+			});
+		} else{
+			const newItem = cartProduct.find(item => item.id === parseInt(id, 10));
+			setSelected({
+				all: false,
+				item: checked ? [...selected.item, newItem] : selected.item.filter(item => item.id !== parseInt(id, 10)),
+			});
+		}
 	}
 
 
@@ -45,7 +42,6 @@ export default function Cart(){
 	const handleCounter = (event) => {
 		const {id, name, value} = event.target;
 		const item = cartProduct.find((item) => item.id === parseInt(id, 10));
-
 		if(item.quantity !== 0){
 			if(value === 'plus' || (
 					value === 'minus' && item.quantity > 1)){
@@ -64,10 +60,11 @@ export default function Cart(){
 
 	useEffect(() => {
 		setTotal({
-			price: cartProduct.reduce((acc, item) => acc + (
-					item.priceInt * item.quantity), 0), quantity: cartProduct.reduce((acc, item) => acc + item.quantity, 0),
-		});
-	}, [cartProduct]);
+			price: selected.item.reduce((acc, item) => acc + (
+					item.priceInt * item.quantity), 0), quantity: selected.item.reduce((acc, item) => acc + item.quantity, 0),
+		})
+	}, [selected]);
+
 
 
 	return (
@@ -118,7 +115,7 @@ export default function Cart(){
 								return (
 										<div key={index} className="flex flex-col gap-3">
 											<div className="flex justify-start items-start">
-												<SelectButton checked={selected.item[id]} id={id}
+												<SelectButton checked={selected.all || selected.item[id]} id={id}
 														onChange={handleChange}/>
 												<div className="ml-2 flex flex-col -my-1">
 													<div className="inline-flex items-center space-x-2">
